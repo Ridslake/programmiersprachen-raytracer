@@ -44,6 +44,12 @@ float Sphere::area() const
   return (4*M_PI*radius*radius);
 }
 
+std::ostream& Sphere::print(std::ostream& os) const
+{
+ os << name_ << std::endl;
+ os << color_ << std::endl;
+} 
+
   //circumference
 //float Sphere::get_spherecircumference() const
 //{

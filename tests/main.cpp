@@ -56,8 +56,19 @@ TEST_CASE("Boxcustom","[Boxcustom]")
   REQUIRE(cus.volume() == Approx(4));
   REQUIRE(cus.area() == Approx(16));
 }
+//Aufgabe 5 Tests
+TEST_CASE("aufgabe5","[ausgabe]")
+{
+  Box cus1 {"Box1", {1, 0, 0}, {1, 1, 1},{3, 2, 3}};
+  Sphere cus2 {"Sphere1", {1, 0, 0}, {2, 2, 4}, 3};
+
+  std::cout << cus1;
+  std::cout << cus2; 
+}
 
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);
 }
+
+

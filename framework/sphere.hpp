@@ -21,6 +21,7 @@ glm::vec3& get_spherecenter();
 
 float volume() const override;
 float area() const override;
+std::ostream& print(std::ostream& os) const override;
 
 //float get_spherediameter() const;
 //float get_spherecircumference() const;
