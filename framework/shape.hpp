@@ -26,12 +26,12 @@ public:
 std::string get_name_() const;
 Color get_color_() const;
 
+//Aufgabe 5.4 
+  virtual std::ostream& print(std::ostream&) const;  //virtual, override possible
+
 protected:
   std::string name_;
   Color color_;
-
-//Aufgabe 5.4 
-  virtual std::ostream& print(std::ostream& os) const;  //virtual, override possible
 
 };
 
