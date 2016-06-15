@@ -1,8 +1,10 @@
 #ifndef BOX_HPP
 #define BOX_HPP
+
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include "shape.hpp"
+#include "color.hpp"
 
 class Box : public Shape
 {
@@ -11,7 +13,7 @@ public:
   Box();
 
 //custom contructor
-  Box(glm::vec3 const&, glm::vec3 const&); //const& points directly at the object, no copy!
+  Box(std::string const&, Color const&, glm::vec3 const&, glm::vec3 const&); //const& points directly at the object, no copy!
 
 //getter
 glm::vec3 get_boxmin() const;
@@ -28,6 +30,7 @@ glm::vec3 set_boxmax();
 
 private:
 //variablen
+
   glm::vec3 min;
   glm::vec3 max;
 };

@@ -7,12 +7,14 @@
 
 //default constructor
 Sphere::Sphere():
+  Shape (std::string ("sphere"), {0, 0, 0}),
   center ({0, 0, 0}),
   radius (0)
   {}
 
 //custom contructor
-Sphere::Sphere(glm::vec3 const& center, float radius):
+Sphere::Sphere(std::string const& name_, Color const& color_, glm::vec3 const& center, float radius):
+  Shape (name_, color_),
   center (center),
   radius (radius)
   {}

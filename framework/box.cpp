@@ -5,11 +5,13 @@
 #include <shape.hpp>
 
 Box::Box():
+  Shape (std::string ("box"), {0, 0, 0}),
   min ({0, 0, 0}),
   max ({0, 0, 0})
   {}
 
-Box::Box(glm::vec3 const& min, glm::vec3 const& max):
+Box::Box(std::string const& name_, Color const& color_, glm::vec3 const& min, glm::vec3 const& max):
+  Shape(name_, color_),
   min (min),
   max (max)
   {}

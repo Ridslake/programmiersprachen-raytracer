@@ -1,8 +1,10 @@
 #ifndef SPHERE_HPP
 #define SPHERE_HPP
+
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <shape.hpp>
+#include "color.hpp"
 
 class Sphere : public Shape
 {
@@ -11,7 +13,7 @@ public:
   Sphere();
 
 //custom constructor
-  Sphere(glm::vec3 const&, float);
+  Sphere(std::string const&, Color const&, glm::vec3 const&, float);
 
 //getter
 float get_sphereradius() const;

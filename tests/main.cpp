@@ -2,8 +2,9 @@
 #include <catch.hpp>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
-#include <sphere.hpp>
-#include <box.hpp>
+#include "sphere.hpp"
+#include "box.hpp"
+#include "shape.hpp"
 
 //sphere tests
 TEST_CASE("Spheredefault","[spheredefault]")
@@ -16,15 +17,18 @@ TEST_CASE("Spheredefault","[spheredefault]")
   REQUIRE(def.volume() == Approx(0));
   REQUIRE(def.area() == Approx(0));
 }
+
 TEST_CASE("Spherecustom","[spherecustom]")
 {
-  Sphere cus {{2, 2, 4}, 3};
+  Sphere cus {"Sphere1", {1, 0, 0}, {2, 2, 4}, 3};
   glm::vec3 center_custom{2, 2, 4};
+  Color color_red{1, 0, 0};
 
   REQUIRE(glm::all (glm::equal(cus.get_spherecenter(), center_custom)));
   REQUIRE(cus.get_sphereradius() == Approx(3));
   REQUIRE(cus.volume() == Approx(4/3*M_PI*3*3*3));
   REQUIRE(cus.area() == Approx(4*M_PI*3*3));
+
 }
 
 //box tests
@@ -39,11 +43,13 @@ TEST_CASE("Boxdefault","[Boxdefault]")
   REQUIRE(def.volume() == Approx(0));
   REQUIRE(def.area() == Approx(0));
 }
+
 TEST_CASE("Boxcustom","[Boxcustom]")
 {
-  Box cus {{1, 1, 1},{3, 2, 3}};
+  Box cus {"Box1", {1, 0, 0}, {1, 1, 1},{3, 2, 3}};
   glm::vec3 min_custom{1, 1, 1};
   glm::vec3 max_custom{3, 2, 3};
+  Color color_red{1, 0, 0};
 
   REQUIRE(glm::all (glm::equal(cus.get_boxmin(), min_custom)));
   REQUIRE(glm::all (glm::equal(cus.get_boxmax(), max_custom)));
