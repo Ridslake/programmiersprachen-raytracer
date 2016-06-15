@@ -66,3 +66,9 @@ float Box::area() const
 
 	return 2*(x*y + x*z + y*z);
 }
+
+std::ostream& Box::print(std::ostream& os) const
+{
+ os << name_ << std::endl;
+ os << color_ << std::endl;
+} 

@@ -21,8 +21,10 @@ glm::vec3 get_boxmax() const;
 float get_boxlength() const;
 float get_boxwidth() const;
 float get_boxheight() const;
+
 float volume() const override;
 float area() const override;
+std::ostream& print(std::ostream& os) const override;
 
 //setter
 glm::vec3 set_boxmin();
