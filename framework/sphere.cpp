@@ -1,8 +1,7 @@
-#include "sphere.hpp"
-#include <cmath>
 #include <glm/glm.hpp>
+#include <glm/gtx/intersect.hpp>
 #include <glm/vec3.hpp>
-#include <shape.hpp>
+#include "sphere.hpp"
 #define M_PI 3.14159265358979323846
 
 //default constructor
@@ -49,7 +48,11 @@ std::ostream& Sphere::print(std::ostream& os) const
  os << name_ << std::endl;
  os << color_ << std::endl;
 } 
-
+  //5.6
+bool Sphere::intersect(Ray const& ray, float distance)
+{
+  return  glm::intersectRaySphere(ray.origin, ray.direction, center, radius, 		  distance);
+}
   //circumference
 //float Sphere::get_spherecircumference() const
 //{

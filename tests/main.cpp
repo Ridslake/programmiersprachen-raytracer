@@ -1,10 +1,12 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include <glm/glm.hpp>
+#include <glm/gtx/intersect.hpp>
 #include <glm/vec3.hpp>
 #include "sphere.hpp"
 #include "box.hpp"
 #include "shape.hpp"
+#include "ray.hpp"
 
 //sphere tests
 TEST_CASE("Spheredefault","[spheredefault]")
@@ -56,7 +58,7 @@ TEST_CASE("Boxcustom","[Boxcustom]")
   REQUIRE(cus.volume() == Approx(4));
   REQUIRE(cus.area() == Approx(16));
 }
-//Aufgabe 5 Tests
+//task 5 tests
 TEST_CASE("aufgabe5","[ausgabe]")
 {
   Box cus1 {"Box1", {1, 0, 0}, {1, 1, 1},{3, 2, 3}};
@@ -64,6 +66,24 @@ TEST_CASE("aufgabe5","[ausgabe]")
 
   std::cout << cus1;
   std::cout << cus2; 
+}
+//task 6 tests
+TEST_CASE("intersectRaySphere","[intersect]")
+{
+  glm::vec3 ray_origin{0, 0, 0};
+//ray direction has to be normalized!
+//you can use :
+// v = glm::normalize(some_vector)
+  glm::vec3 ray_direction{0, 0 ,1};
+//sphere
+  glm::vec3 sphere_center{0, 0, 5};
+  float sphere_radius{1};
+
+  float distance{0};
+  auto result = glm::intersectRaySphere(ray_origin, ray_direction,
+		sphere_center, sphere_radius * sphere_radius,
+		distance);
+  REQUIRE(distance == Approx(4.0f));
 }
 
 int main(int argc, char *argv[])
