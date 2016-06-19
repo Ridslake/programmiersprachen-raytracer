@@ -15,6 +15,9 @@ public:
 //custom constructor
   Shape(std::string const&, Color const&);
 
+//destructor
+  virtual ~Shape();
+
 //virtual methods
   virtual float area() const = 0;	//pure virtual, no implementation on this level, override needed
 

@@ -16,6 +16,8 @@ public:
 //custom constructor
   Sphere(std::string const&, Color const&, glm::vec3 const&, float);
 
+//destructor
+  ~Sphere();
 //getter
 float get_sphereradius() const;
 glm::vec3& get_spherecenter();

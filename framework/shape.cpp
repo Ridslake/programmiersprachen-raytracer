@@ -12,6 +12,12 @@ Shape::Shape(std::string const& name_, Color const& color_):
   color_ (color_)
   {}
 
+//destructor
+Shape::~Shape()
+{
+  std::cout <<"destruct shape"<<std::endl;
+}
+
 //getter
   //name
 std::string Shape::get_name_() const
@@ -34,3 +40,4 @@ std::ostream& operator <<(std::ostream& os, Shape const& s)
 {
   return s.print(os);
 }
+

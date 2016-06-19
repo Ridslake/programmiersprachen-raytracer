@@ -58,14 +58,25 @@ TEST_CASE("Boxcustom","[Boxcustom]")
   REQUIRE(cus.volume() == Approx(4));
   REQUIRE(cus.area() == Approx(16));
 }
-//task 5 tests
+//task 5 and 8 tests
 TEST_CASE("aufgabe5","[ausgabe]")
 {
   Box cus1 {"Box1", {1, 0, 0}, {1, 1, 1},{3, 2, 3}};
   Sphere cus2 {"Sphere1", {1, 0, 0}, {2, 2, 4}, 3};
 
   std::cout << cus1;
-  std::cout << cus2; 
+  std::cout << cus2;
+
+  Color color_red {255, 0, 0};
+  glm::vec3 position {0 ,0, 0};
+  Sphere* s1 = new Sphere("sphere0", color_red, position, 1.2);
+  Shape* s2 = new Sphere("sphere1", color_red, position, 1.2);
+
+  s1->print(std::cout);
+  s2->print(std::cout);
+
+  delete s1;
+  delete s2;
 }
 //task 6 tests
 TEST_CASE("intersectRaySphere","[intersect]")

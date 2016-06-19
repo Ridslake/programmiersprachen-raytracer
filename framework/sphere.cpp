@@ -18,6 +18,13 @@ Sphere::Sphere(std::string const& name_, Color const& color_, glm::vec3 const& c
   radius (radius)
   {}
 
+//destructor
+Sphere::~Sphere()
+{
+  std::cout <<"destruct sphere"<<std::endl;
+}
+  
+
 //getter
   //radius
 float Sphere::get_sphereradius() const
