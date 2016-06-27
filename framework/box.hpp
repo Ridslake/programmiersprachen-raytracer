@@ -13,7 +13,7 @@ public:
   Box();
 
 //custom contructor
-  Box(std::string const&, Color const&, glm::vec3 const&, glm::vec3 const&); //const& points directly at the object, no copy!
+  Box(std::string const&, Material const&, glm::vec3 const&, glm::vec3 const&); //const& points directly at the object, no copy!
 
 //getter
 glm::vec3 get_boxmin() const;
@@ -26,13 +26,8 @@ float volume() const override;
 float area() const override;
 std::ostream& print(std::ostream& os) const override;
 
-//setter
-glm::vec3 set_boxmin();
-glm::vec3 set_boxmax();
-
 private:
 //variablen
-
   glm::vec3 min;
   glm::vec3 max;
 };

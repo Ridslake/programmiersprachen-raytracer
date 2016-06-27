@@ -5,13 +5,13 @@
 #include <shape.hpp>
 
 Box::Box():
-  Shape (std::string ("box"), {0, 0, 0}),
+  Shape (std::string ("box"), {}),
   min ({0, 0, 0}),
   max ({0, 0, 0})
   {}
 
-Box::Box(std::string const& name_, Color const& color_, glm::vec3 const& min, glm::vec3 const& max):
-  Shape(name_, color_),
+Box::Box(std::string const& name_, Material const& mat, glm::vec3 const& min, glm::vec3 const& max):
+  Shape(name_, mat),
   min (min),
   max (max)
   {}
@@ -29,24 +29,6 @@ glm::vec3 Box::get_boxmax() const
   return max;
 }
 
-  /*length
-float Box::get_boxlength() const
-{
-  return (abs(max.x -min.x));
-}
-
-  //width
-float Box::get_boxwidth() const
-{
-  return (abs(max.y - min.y));
-}
-
-  //height
-float Box::get_boxheight() const 
-{
-  return (abs(max.z - min.z));
-}
-*/
   //volume
 float Box::volume() const
 {

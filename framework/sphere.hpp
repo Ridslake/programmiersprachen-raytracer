@@ -14,10 +14,11 @@ public:
   Sphere();
 
 //custom constructor
-  Sphere(std::string const&, Color const&, glm::vec3 const&, float);
+  Sphere(std::string const&, Material const&, glm::vec3 const&, float);
 
 //destructor
   ~Sphere();
+
 //getter
 float get_sphereradius() const;
 glm::vec3& get_spherecenter();
@@ -28,13 +29,6 @@ std::ostream& print(std::ostream& os) const override;
 
 //5.6 intersect
 bool intersect(Ray const& ray, float distance);
-
-//float get_spherediameter() const;
-//float get_spherecircumference() const;
-
-//setter
-//float set_sphereradius(float nradius);
-//glm::vec3 set_spherecenter(glm::vec3 center)
 
 private:
 //variablen

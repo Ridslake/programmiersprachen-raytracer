@@ -6,14 +6,14 @@
 
 //default constructor
 Sphere::Sphere():
-  Shape (std::string ("sphere"), {0, 0, 0}),
+  Shape (std::string ("sphere"), {}),
   center ({0, 0, 0}),
   radius (0)
   {}
 
 //custom contructor
-Sphere::Sphere(std::string const& name_, Color const& color_, glm::vec3 const& center, float radius):
-  Shape (name_, color_),
+Sphere::Sphere(std::string const& name_, Material const& mat, glm::vec3 const& center, float radius):
+  Shape (name_, mat),
   center (center),
   radius (radius)
   {}
@@ -53,22 +53,11 @@ float Sphere::area() const
 std::ostream& Sphere::print(std::ostream& os) const
 {
  os << name_ << std::endl;
- os << color_ << std::endl;
+ os << mat << std::endl;
+ os << radius << std::endl;
 } 
   //5.6
 bool Sphere::intersect(Ray const& ray, float distance)
 {
   return  glm::intersectRaySphere(ray.origin, ray.direction, center, radius, 		  distance);
 }
-  //circumference
-//float Sphere::get_spherecircumference() const
-//{
-  //return (2*M_PI*radius);
-//}
-
-  //diameter
-//float Sphere::get_spherediameter() const
-//{
-  //return (2*radius);
-//}
-
