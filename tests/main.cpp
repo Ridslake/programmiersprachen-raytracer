@@ -9,6 +9,7 @@
 #include "ray.hpp"
 #include "material.hpp"
 #include "ray.hpp"
+#include "input.hpp"
 
 //sphere tests
 /*TEST_CASE("Spheredefault","[spheredefault]")
@@ -99,7 +100,7 @@ TEST_CASE("intersectRaySphere","[intersect]")
   REQUIRE(distance == Approx(4.0f));
 }
 */
-TEST_CASE("test_intersect_box_5.10")
+TEST_CASE("intersect_box")
 {
 //material
   Material m1{{"Abc"},{1 ,0.5 ,0.75},{1, 0.5, 0.75},{1, 0.5,0.75},{0.9}};
@@ -113,7 +114,7 @@ TEST_CASE("test_intersect_box_5.10")
 	Ray r2{{0,0,0},{4,0,3}};
 //distance
 	float distance = 0;
-	std::cout<<"=============Aufgabe 5.10 Ray Box Intersection=============\n";
+	std::cout<<"Aufgabe 3 Ray Box Intersection\n";
 	auto result = a.intersect(r1,distance);
 	std::cout<<"a intersect r1: "<<distance<<std::endl;
 	result = b.intersect(r1,distance);
@@ -122,6 +123,34 @@ TEST_CASE("test_intersect_box_5.10")
 	std::cout<<"c intersect r1: "<<distance<<std::endl;
 	result = d.intersect(r2,distance);
 	std::cout<<"d intersect r2: "<<distance<<std::endl;
+}
+
+TEST_CASE("read sdf", "[raytracer]")
+{
+	/*std::ofstream file;
+	file.open("hi.txt");
+	file << "... \n";
+	file.close();*/
+	SDF scene;
+
+	std::cout<< 1 << std::endl;
+
+	scene.readInput("example.txt");
+
+	std::cout<< 2 << std::endl;
+
+	
+	std::vector<Material> v = scene.getMaterials();
+
+		
+	std::cout<< 3 << std::endl;
+
+
+	for(std::vector<Material>::iterator it = v.begin(); it != v.end(); it ++){
+		std::cout << *it;
+		std::cout << "hi";
+	}
+
 }
 int main(int argc, char *argv[])
 {
