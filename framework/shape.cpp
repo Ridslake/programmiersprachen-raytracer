@@ -7,7 +7,7 @@ Shape::Shape():
   {}
 
 //custom
-Shape::Shape(std::string const& name_, Color const& color_):
+Shape::Shape(std::string const& name_, Material const& mat):
   name_ (name_),
   mat (mat)
   {}
@@ -25,7 +25,7 @@ std::string Shape::get_name_() const
   return name_;
 }
   //color
-Color Shape::get_material() const
+Material Shape::get_material() const
 {
   return mat;
 }

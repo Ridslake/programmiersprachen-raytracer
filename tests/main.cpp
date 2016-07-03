@@ -3,13 +3,15 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <glm/vec3.hpp>
+#include "shape.hpp"
 #include "sphere.hpp"
 #include "box.hpp"
-#include "shape.hpp"
+#include "ray.hpp"
+#include "material.hpp"
 #include "ray.hpp"
 
 //sphere tests
-TEST_CASE("Spheredefault","[spheredefault]")
+/*TEST_CASE("Spheredefault","[spheredefault]")
 {
   Sphere def;
   glm::vec3 center_default{0, 0, 0};
@@ -96,7 +98,31 @@ TEST_CASE("intersectRaySphere","[intersect]")
 		distance);
   REQUIRE(distance == Approx(4.0f));
 }
-
+*/
+TEST_CASE("test_intersect_box_5.10")
+{
+//material
+  Material m1{{"Abc"},{1 ,0.5 ,0.75},{1, 0.5, 0.75},{1, 0.5,0.75},{0.9}};
+//boxes	
+	Box a{"Box", m1,{0, 0, 0},{8, 3, 3}};
+	Box b{"Box1", m1,{5, 0, 0},{8, 3, 3}};
+	Box c{"Box2", m1,{0, 0 ,1},{8 ,3, 3}};
+	Box d{"Box3", m1,{4, 0, 0},{8, 3 , 3}};
+//rays
+	Ray r1{{0,0,0},{1,0,0}};
+	Ray r2{{0,0,0},{4,0,3}};
+//distance
+	float distance = 0;
+	std::cout<<"=============Aufgabe 5.10 Ray Box Intersection=============\n";
+	auto result = a.intersect(r1,distance);
+	std::cout<<"a intersect r1: "<<distance<<std::endl;
+	result = b.intersect(r1,distance);
+	std::cout<<"b intersect r1: "<<distance<<std::endl;
+	result = c.intersect(r1,distance);
+	std::cout<<"c intersect r1: "<<distance<<std::endl;
+	result = d.intersect(r2,distance);
+	std::cout<<"d intersect r2: "<<distance<<std::endl;
+}
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include "shape.hpp"
-#include "color.hpp"
+#include "ray.hpp"
 
 class Box : public Shape
 {
@@ -25,6 +25,7 @@ float get_boxheight() const;
 float volume() const override;
 float area() const override;
 std::ostream& print(std::ostream& os) const override;
+bool intersect (Ray const&, float&) override;
 
 private:
 //variablen

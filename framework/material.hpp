@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <string>
-#include "color.hpp"s
+#include "color.hpp"
 
 struct Material
 {

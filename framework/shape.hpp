@@ -4,6 +4,7 @@
 #include <iostream>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
+#include "ray.hpp"
 #include "material.hpp"
 
 class Shape
