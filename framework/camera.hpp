@@ -4,6 +4,7 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <iostream>
+#include <string>
 
 #include "ray.hpp"
 
@@ -26,7 +27,7 @@ public:
   glm::vec3 const& getcamup() const;
 
 //Ray const castray(glm::vec3 const& dir) const;
-  glm::mat4 camtransform() const;
+  glm::mat4 transformCam() const;
   Ray eye_calc(int x, int y, int height, int width) const;
 
 //Ausgabe zur Überprüfung

@@ -157,20 +157,24 @@ Scene load_sdf_file(std::string const& filename)
 	{
 	//Variablen von camera
           std::string name;
-	  float angle, posx, posy, posz, upx,upy,upz;
+	  float fovx, posx, posy, posz, dirx, diry, dirz, upx, upy, upz;
 	  //Einlesen und Zuweisen der Werte
 	  ss>>name;
+	  ss>>fovx;
 	  ss>>posx;
 	  ss>>posy;
 	  ss>>posz;
+	  ss>>dirx;
+	  ss>>diry;
+	  ss>>dirz;
 	  ss>>upx;
 	  ss>>upy;
 	  ss>>upz;
 	  glm::vec3 pos{posx,posy,posz};
+	  glm::vec3 dir{dirx,diry,dirz};
 	  glm::vec3 up{upx,upy,upz};
-	  ss>>angle;
 
-	  Camera cam{name,pos,up, angle};
+	  Camera cam{name,fovx,pos,dir,up};
 	  std::cout << cam;
 	  scene.camera=cam;
 	}
