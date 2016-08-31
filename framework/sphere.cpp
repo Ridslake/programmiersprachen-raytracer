@@ -1,17 +1,20 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <glm/vec3.hpp>
+#include <cmath>
+
+#include "hit.hpp"
 #include "sphere.hpp"
 #define M_PI 3.14159265358979323846
 
-//default constructor
+//d
 Sphere::Sphere():
   Shape (std::string ("sphere"), {}),
   center ({0, 0, 0}),
   radius (0)
   {}
 
-//custom contructor
+//c
 Sphere::Sphere(std::string const& name_, Material const& mat, glm::vec3 const& center, float radius):
   Shape (name_, mat),
   center (center),
@@ -33,21 +36,9 @@ float Sphere::get_sphereradius() const
 }
 
   //center
-glm::vec3& Sphere::get_spherecenter()
+glm::vec3 const& Sphere::get_spherecenter() const
 {
   return center;
-}
-
-  //volume
-float Sphere::volume() const
-{
-  return (4/3*M_PI*radius*radius*radius);
-}
-
-  //area
-float Sphere::area() const
-{
-  return (4*M_PI*radius*radius);
 }
 
 std::ostream& Sphere::print(std::ostream& os) const
@@ -56,8 +47,21 @@ std::ostream& Sphere::print(std::ostream& os) const
  os << mat << std::endl;
  os << radius << std::endl;
 } 
-  //5.6
-bool Sphere::intersect(Ray const& ray, float distance)
+
+Hit Sphere::intersect(Ray const& ray)
 {
-  return  glm::intersectRaySphere(ray.origin, ray.direction, center, radius, 		  distance);
+  Hit s_hit;
+
+  s_hit.hit_ = glm::intersectRaySphere(
+  ray.origin,
+  glm::normalize(ray.direction),
+  center, radius,
+  s_hit.target_, s_hit.normal_
+  );
+
+  s_hit.distance_ = glm::distance(ray.origin, s_hit.target_);
+
+  s_hit.sptr_ = this;
+
+  return s_hit;
 }

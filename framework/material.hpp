@@ -1,16 +1,19 @@
 #ifndef MATERIAL_HPP
 #define MATERIAL_HPP
 
-#include <glm/glm.hpp>
-#include <glm/vec3.hpp>
+#include <iostream>
 #include <string>
+
 #include "color.hpp"
 
 struct Material
 {
-  Material(); //def
-  
-  Material(std::string const& name, Color const& ka, Color const& kd, Color const& ks, float const& m); //cus
+//def
+  Material();
+
+//cus
+  Material(std::string const& name, Color const& ka,
+	Color const& kd, Color const& ks, float const& m); //cus
 
   std::ostream& print(std::ostream& os) const;
 

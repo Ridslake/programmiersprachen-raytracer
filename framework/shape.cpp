@@ -20,7 +20,7 @@ Shape::~Shape()
 
 //getter
   //name
-std::string Shape::get_name_() const
+std::string Shape::getname() const
 {
   return name_;
 }

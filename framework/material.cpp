@@ -1,7 +1,7 @@
 #include "material.hpp"
 
 Material::Material(): //def
-  name {""},
+  name {"NoName"},
   ka ({0, 0 ,0}),
   kd ({0, 0 ,0}),
   ks ({0, 0 ,0}),

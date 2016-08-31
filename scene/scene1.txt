@@ -1,0 +1,11 @@
+define material red 1 0 0 1 0 0 1 0 0 1
+define material blue 0 0 1 0 0 1 0 0 1 1
+define material green 0.5 0.5 0.5 1 1 1 2 2 2 1
+# 
+define shape sphere kuegelchen 1 2 3 10 red
+define shape box  1 2 3 3 2 1 meinersterwuerfel blue
+define light lichtlein 4 5 6 1 0 1
+define camera kameramann 0.0 0.0 0.0 45.0
+define background 1 1 1
+define amblight 1 1 1
+define renderer jonasprobierts 400 400

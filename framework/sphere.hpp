@@ -5,30 +5,24 @@
 #include <glm/gtx/intersect.hpp>
 #include <glm/vec3.hpp>
 #include "shape.hpp"
-#include "ray.hpp"
+
 
 class Sphere : public Shape
 {
 public:
-//default Constructor
+//d
   Sphere();
 
-//custom constructor
+//c
   Sphere(std::string const&, Material const&, glm::vec3 const&, float);
 
-//destructor
   ~Sphere();
 
 //getter
 float get_sphereradius() const;
-glm::vec3& get_spherecenter();
-
-float volume() const override;
-float area() const override;
+glm::vec3 const& get_spherecenter() const;
 std::ostream& print(std::ostream& os) const override;
-
-//5.6 intersect
-bool intersect(Ray const& ray, float distance);
+Hit intersect(Ray const& ray) override;
 
 private:
 //variablen
