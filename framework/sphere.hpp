@@ -16,7 +16,6 @@ public:
 //c
   Sphere(std::string const&, Material const&, glm::vec3 const&, float);
 
-  ~Sphere();
 
 //getter
 float get_sphereradius() const;

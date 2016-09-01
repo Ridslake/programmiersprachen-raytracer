@@ -6,6 +6,7 @@ Light::Light():
   ld({})
   {}
 //c
+//light für beleuchtung definiert
 Light::Light(std::string const& lightname, glm::vec3 const& lightpos,
 	Color const& lightld):
   lightname(lightname),

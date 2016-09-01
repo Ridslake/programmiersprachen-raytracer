@@ -17,14 +17,9 @@ public:
 
   friend std::ostream& operator<<(std::ostream& os, Light const& light);
 
-//	glm::vec3 const& pos() const;
-//	Color const& ld() const;
-//	std::string const& name() const;
-//	std::ostream& print(std::ostream& os) const;
-//private:
-	std::string lightname;
-	glm::vec3 lightpos;
-	Color ld;
+  std::string lightname;
+  glm::vec3 lightpos;
+  Color ld;
 };
 
 #endif

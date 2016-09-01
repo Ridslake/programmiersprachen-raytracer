@@ -29,11 +29,10 @@ public:
 //tranformieren der Camera nach Vorlesung
   glm::mat4 CamTrans() const;
 
-  Ray eye_calc(int x, int y, int height, int width) const;
-
   Ray const castray(glm::vec3 const& dir) const;
 
 //Ausgabe zur Überprüfung
+//methoden zugriff auf die elemente einer anderen Klasse = friend
 friend std::ostream& operator<<(std::ostream& os, Camera const& c);
 
 //Variablen Camera

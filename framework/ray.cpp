@@ -4,7 +4,7 @@
 Ray::Ray():
   origin ({0, 0, 0}),
   direction ({0, 0, 0}),
-  inv_direction ({-0,-0,-0})
+  inv_direction ({-0,-0,-0}) //Negativ da inverse
   {}
 
 //c

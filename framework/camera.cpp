@@ -38,6 +38,7 @@ glm::vec3 const& Camera::getcamup() const
   return camup;
 }
 
+//Intersect braucht Raycast (aus Kamera kommend)
 Ray const Camera::castray(glm::vec3 const& dir) const
 {
   Ray ray{campos, campos + dir};
@@ -65,19 +66,6 @@ glm::mat4 Camera::CamTrans() const
   return CamTrans; //transformierte Camera
 } 
 
-Ray Camera::eye_calc(int x, int y, int height, int width) const
-{
-  glm::vec3 camdir
-  {
-    	float(x) * 1.0 / float(width) - 0.5,
-    	float(y) * 1.0 / float(height) - 0.5, 
-    	-1.0 * (0.5 / tan(camfovx/2))};
-
-  Ray camRay{campos, camdir};
-  auto transformedCam = CamTrans();
-
-  return camRay.transformRay(transformedCam);
-}
 
 //Ueberpruefen mit Ausgabe
 std::ostream& operator<<(std::ostream& os, Camera const& c)

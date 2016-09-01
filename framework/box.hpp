@@ -18,6 +18,7 @@ public:
 //const& points directly at the object, no copy!
 
 //getter
+//Override Funktion ist virtuell und sorgt dafür, dass virtuelle Funktionen der Basisklasse überschrieben werden
 Hit intersect(Ray const& ray) override;
 glm::vec3 const& min() const;
 glm::vec3 const& max() const;

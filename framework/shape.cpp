@@ -34,6 +34,7 @@ std::ostream& Shape::print(std::ostream& os) const
 {
  os << name_ << std::endl;
  os << mat << std::endl;
+ return os;
 } 
 
 std::ostream& operator <<(std::ostream& os, Shape const& s)

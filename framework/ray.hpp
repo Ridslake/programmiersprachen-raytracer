@@ -24,9 +24,6 @@ struct Ray
 
   Ray transformRay(glm::mat4 const& mat);
 
-
-
-
 //variables
   glm::vec3 origin;
   glm::vec3 direction;

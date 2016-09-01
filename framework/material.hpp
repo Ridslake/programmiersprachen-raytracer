@@ -26,6 +26,6 @@ struct Material
 
 };
 
-std::ostream& operator <<(std::ostream& os, Material const& mat); //streamop <<
+std::ostream& operator <<(std::ostream& os, Material const& mat); 
 
 #endif

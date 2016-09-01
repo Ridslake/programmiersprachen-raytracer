@@ -21,12 +21,6 @@ Sphere::Sphere(std::string const& name_, Material const& mat, glm::vec3 const& c
   radius (radius)
   {}
 
-//destructor
-Sphere::~Sphere()
-{
-  std::cout <<"destruct sphere"<<std::endl;
-}
-  
 
 //getter
   //radius

@@ -24,6 +24,8 @@ Scene load_sdf_file(std::string const& filename)
   std::string line;
   std::ifstream myfile (filename);
 
+
+
   if (myfile.is_open())
   {
   while (getline(myfile,line))
@@ -115,6 +117,8 @@ Scene load_sdf_file(std::string const& filename)
 	  glm::vec3 center{x,y,z};
 	  //radius
 	  ss>>r;
+          std::string mat_name;
+          ss>>mat_name;
 	  //Name des Materials
 	  ss>>mat_namesphere;
 	  //shared pointer fuer die Sphere
@@ -178,6 +182,7 @@ Scene load_sdf_file(std::string const& filename)
 	  std::cout << cam;
 	  scene.camera=cam;
 	}
+
 
 	else if(keyword == "renderer")
 	{
