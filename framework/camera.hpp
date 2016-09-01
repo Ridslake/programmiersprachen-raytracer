@@ -18,7 +18,7 @@ public:
 //Beobachtungspunkt e(ye), Blickrichtung n (dir),  Up-Vektor (up)
   Camera(std::string const&, float, glm::vec3 const&, glm::vec3 const&, glm::vec3 const&);
   
-
+  
 //getter, koennte man auch alles in der HPP machen
   std::string const& getcamname() const;
   float const& getcamfovx() const;
@@ -27,7 +27,7 @@ public:
   glm::vec3 const& getcamup() const;
 
 //tranformieren der Camera nach Vorlesung
-  glm::mat4 transformCam() const;
+  glm::mat4 CamTrans() const;
 
   Ray eye_calc(int x, int y, int height, int width) const;
 
@@ -36,7 +36,7 @@ public:
 //Ausgabe zur Überprüfung
 friend std::ostream& operator<<(std::ostream& os, Camera const& c);
 
-//Varibalen Camera
+//Variablen Camera
 private:
   std::string camname;
   float camfovx;

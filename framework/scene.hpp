@@ -10,18 +10,20 @@
 #include "shape.hpp"
 #include "material.hpp"
 
-struct Scene
-{
+struct Scene{
   std::string filename;
-  float yres_ = 0.0;
-  float xres_ = 0.0;
   Camera camera;
+
+  float yresolution = 0.0;
+  float xresolution = 0.0;
+
   std::map<std::string,Material> materials;	
   std::vector<std::shared_ptr<Shape>> shapes_ptr;
   std::vector<Light> lights;
   std::map<std::string, std::vector<std::shared_ptr<Shape>>> composites;
+
   Color amblight;
   Color background;
 };
 
-#endif //#define SHAPE_HPP
+#endif

@@ -45,7 +45,7 @@ Ray const Camera::castray(glm::vec3 const& dir) const
 }
 
 //Camera Transformation nach Vorlesung
-glm::mat4 Camera::transformCam() const
+glm::mat4 Camera::CamTrans() const
 {
   glm::vec3 eye = campos;
   glm::vec3 n = glm::normalize(camdir); //zu normieren
@@ -56,25 +56,25 @@ glm::mat4 Camera::transformCam() const
 //v um sicher zu gehen das up senkrecht zu u und n ist, zu normieren
   glm::vec3 v = glm::normalize(glm::cross(u, n));
 
-  glm::mat4 transformCam;
-  transformCam[0] = glm::vec4 {u, 0.0f}; //erste Spalte der Matrix
-  transformCam[1] = glm::vec4 {v, 0.0f};
-  transformCam[2] = glm::vec4 {n * -1.0f, 0.0f};
-  transformCam[3] = glm::vec4 {eye, 1.0f};
+  glm::mat4 CamTrans;
+  CamTrans[0] = glm::vec4 {u, 0.0f}; //erste Spalte der Matrix
+  CamTrans[1] = glm::vec4 {v, 0.0f};
+  CamTrans[2] = glm::vec4 {n * -1.0f, 0.0f};
+  CamTrans[3] = glm::vec4 {eye, 1.0f};
 
-  return transformCam; //transformierte Camera
+  return CamTrans; //transformierte Camera
 } 
 
 Ray Camera::eye_calc(int x, int y, int height, int width) const
 {
   glm::vec3 camdir
   {
-    float(x) * 1.0 / float(width) - 0.5,
-    float(y) * 1.0 / float(height) - 0.5, 
-    -1.0 * (0.5 / tan(camfovx/2))}; // distance to canvas = 0.5 / tan(angle / 2)
+    	float(x) * 1.0 / float(width) - 0.5,
+    	float(y) * 1.0 / float(height) - 0.5, 
+    	-1.0 * (0.5 / tan(camfovx/2))};
 
   Ray camRay{campos, camdir};
-  auto transformedCam = transformCam();
+  auto transformedCam = CamTrans();
 
   return camRay.transformRay(transformedCam);
 }

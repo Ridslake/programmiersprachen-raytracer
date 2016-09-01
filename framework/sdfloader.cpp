@@ -184,13 +184,12 @@ Scene load_sdf_file(std::string const& filename)
 	  ss>>keyword;
 
 	  ss>>scene.filename;
-
-	  ss>>scene.xres_;
-	  ss>>scene.yres_;
+	  ss>>scene.xresolution;
+	  ss>>scene.yresolution;
 
 	  std::cout << scene.filename << "\n"
-	  <<"Resolution: "<< scene.xres_ <<" x " <<
-	  scene.yres_ << "\n";
+	  <<"Auflösung:"<< scene.xresolution <<" x " <<
+	  scene.yresolution << "\n";
 	}
   }
   }
@@ -198,7 +197,7 @@ Scene load_sdf_file(std::string const& filename)
   }
   else
   {
-  std::cout << "Unable to open file";
+  std::cout << "Datei konnte nicht geöffnet werden!";
   }
     return scene;
 }
