@@ -38,28 +38,31 @@ glm::vec3 const& Camera::getcamup() const
   return camup;
 }
 
-/*Ray const Camera::castray(glm::vec3 const& dir) const
+Ray const Camera::castray(glm::vec3 const& dir) const
 {
   Ray ray{campos, campos + dir};
   return ray;
-}*/
+}
 
+//Camera Transformation nach Vorlesung
 glm::mat4 Camera::transformCam() const
 {
   glm::vec3 eye = campos;
-  glm::vec3 n = glm::normalize(camdir);
+  glm::vec3 n = glm::normalize(camdir); //zu normieren
   glm::vec3 up = camup;
 
+//u steht senkrecht auf n(dir) und up, zu normieren
   glm::vec3 u = glm::normalize(glm::cross(n, up));
+//v um sicher zu gehen das up senkrecht zu u und n ist, zu normieren
   glm::vec3 v = glm::normalize(glm::cross(u, n));
 
   glm::mat4 transformCam;
-  transformCam[0] = glm::vec4 {u, 0.0f};
+  transformCam[0] = glm::vec4 {u, 0.0f}; //erste Spalte der Matrix
   transformCam[1] = glm::vec4 {v, 0.0f};
   transformCam[2] = glm::vec4 {n * -1.0f, 0.0f};
   transformCam[3] = glm::vec4 {eye, 1.0f};
 
-  return transformCam;
+  return transformCam; //transformierte Camera
 } 
 
 Ray Camera::eye_calc(int x, int y, int height, int width) const

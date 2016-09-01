@@ -26,9 +26,12 @@ public:
   glm::vec3 const& getcamdir() const;
   glm::vec3 const& getcamup() const;
 
-//Ray const castray(glm::vec3 const& dir) const;
+//tranformieren der Camera nach Vorlesung
   glm::mat4 transformCam() const;
+
   Ray eye_calc(int x, int y, int height, int width) const;
+
+  Ray const castray(glm::vec3 const& dir) const;
 
 //Ausgabe zur Überprüfung
 friend std::ostream& operator<<(std::ostream& os, Camera const& c);
@@ -37,9 +40,9 @@ friend std::ostream& operator<<(std::ostream& os, Camera const& c);
 private:
   std::string camname;
   float camfovx;
-  glm::vec3 campos;
-  glm::vec3 camdir;
-  glm::vec3 camup;
+  glm::vec3 campos; //Urpsprung ({0, 0, 0})
+  glm::vec3 camdir; //blickt entlang der negativen Z-Achse
+  glm::vec3 camup;  //Orientierung
 };
 
 #endif //#define CAMERA_HPP
