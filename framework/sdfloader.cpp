@@ -93,7 +93,7 @@ Scene load_sdf_file(std::string const& filename)
 	  //shared pointer fuer die Box
 	  std::shared_ptr<Shape> temp_ptr = std::make_shared<Box>
 	  (
-          Box{name,scene.materials[mat_namebox],min,max}
+          Box {name, scene.materials[mat_namebox], min, max}
           );
 
           std::cout << *temp_ptr;
@@ -177,28 +177,6 @@ Scene load_sdf_file(std::string const& filename)
 	  Camera cam{name,fovx,pos,dir,up};
 	  std::cout << cam;
 	  scene.camera=cam;
-	}
-                
-	else if(keyword == "amblight")
-	{
-	  float ambr,ambg,ambb;
-	  ss>>ambr;
-	  ss>>ambg;
-	  ss>>ambb;
-	  Color amb{ambr,ambg,ambb};
-	  scene.amblight=amb;
-	  std::cout <<amb;
-	}
-	
-	else if(keyword == "background")
-	{
-	  float backr, backg, backb;
-	  ss>>backr;
-	  ss>>backg;
-	  ss>>backb;
-	  Color back{backr,backg,backb};
-	  scene.background=back;
-	  std::cout <<back;
 	}
 
 	else if(keyword == "renderer")
