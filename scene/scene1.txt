@@ -1,11 +1,9 @@
 define material red 1 0 0 1 0 0 1 0 0 1
 define material blue 0 0 1 0 0 1 0 0 1 1
 define material green 0.5 1 0.5 1 1 1 2 2 2 1
-# 
-define shape sphere KUGEL 1 2 3 5 green
-define shape box  1 2 3 1 2 1 BOX red
-define light LICHT 1 2 6 1 0 1
-define camera CAMERA 45 0.0 0.0 0.0
-define background 1 1 1
-define amblight 1 1 1
-define renderer IMAGE 450 450 450
+#
+define shape sphere kugel 1 2 3 5 green
+define shape box quader 1 2 3 1 2 1 red
+define light sonne 1 2 6 1 0 1
+define camera kamera 45 0 0 0 0 0 -1 0 1 0
+define renderer bildchen bildchen 450 450

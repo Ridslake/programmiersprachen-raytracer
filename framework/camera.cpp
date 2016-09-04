@@ -75,6 +75,6 @@ std::ostream& operator<<(std::ostream& os, Camera const& c)
   << "Fovx: " << c.camfovx << "\n"
   << "Pos: (" << c.campos.x << "," << c.campos.y << "," << c.campos.z << ")\n"
   << "Dir: (" << c.camdir.x << "," << c.camdir.y << "," << c.camdir.z << ")\n"
-  << "Up: (" << c.camup.x << "," << c.camup.y << "," << c.camup.z << ")\n";
+  << "Up: (" << c.camup.x << "," << c.camup.y << "," << c.camup.z << ")\n\n";
   return os;
 }

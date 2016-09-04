@@ -13,8 +13,6 @@
 class Shape
 {
 public:
-
-  virtual ~Shape();
   
   virtual Hit intersect(Ray const& ray) = 0;
   virtual std::ostream& print(std::ostream&) const;

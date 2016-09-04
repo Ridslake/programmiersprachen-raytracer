@@ -12,12 +12,6 @@ Shape::Shape(std::string const& name_, Material const& mat):
   mat (mat)
   {}
 
-//destructor
-Shape::~Shape()
-{
-  std::cout <<"destruct shape"<<std::endl;
-}
-
 //getter
   //name
 std::string Shape::getname() const
