@@ -13,7 +13,7 @@ struct Material
 
 //cus
   Material(std::string const& name, Color const& ka,
-	Color const& kd, Color const& ks, float const& m); //cus
+	Color const& kd, Color const& ks, float m, float reflc); //cus
 
   std::ostream& print(std::ostream& os) const;
 
@@ -23,6 +23,7 @@ struct Material
   Color kd;
   Color ks;
   float m;
+  float reflc;
 
 };
 

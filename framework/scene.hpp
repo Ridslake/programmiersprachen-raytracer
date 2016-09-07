@@ -19,7 +19,7 @@ struct Scene{
 
   std::map<std::string,Material> materials;	
   std::vector<std::shared_ptr<Shape>> shapes_ptr;
-  std::vector<Light> lights;
+  std::vector<Light> lights;;
 
   Color amblight;
   Color background;

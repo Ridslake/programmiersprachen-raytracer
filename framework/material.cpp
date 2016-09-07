@@ -8,12 +8,13 @@ Material::Material(): //def
   m {0}
   {}
 
-Material::Material(std::string const& name, Color const& ka, Color const& kd, Color const& ks, float const& m): //cus
+Material::Material(std::string const& name, Color const& ka, Color const& kd, Color const& ks, float m, float reflc): //cus
   name {name},
   ka {ka},
   kd {kd},
   ks {ks},
-  m {m}
+  m {m},
+  reflc {reflc}
   {}
 
 //print
@@ -23,7 +24,8 @@ std::ostream& Material::print(std::ostream& os) const
   << ka << "\n"
   << kd << "\n"
   << ks << "\n"
-  << m  << "\n";
+  << m  << "\n"
+  << reflc << "\n";
   return os;
 }
 //<< operator

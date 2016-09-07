@@ -9,33 +9,34 @@
 
 #ifndef BUW_RENDERER_HPP
 #define BUW_RENDERER_HPP
+#include <glm/glm.hpp>
 
 #include "color.hpp"
-#include <glm/glm.hpp>
-#include "sphere.hpp"
 #include "pixel.hpp"
 #include "ppmwriter.hpp"
 #include "scene.hpp"
 #include "camera.hpp"
-#include <string>
 
+const unsigned maxdepth = 3;
 
 class Renderer
 {
-
 public:
-
   Renderer();
-  Renderer(Scene scene);
+  Renderer(Scene const& scene);
+
   void render();
-  Color shade(Ray const& ray, Hit const& hit);
   void write(Pixel const& p);
+
+  Color trace(Ray const& ray);
+  Color shade(Ray const& ray, Hit const& hit, float depth);
 
   inline std::vector<Color> const& colorbuffer() const
   {
     return colorbuffer_;
   }
 
+  int depth = 0;
 private:
   std::vector<Color> colorbuffer_;
   PpmWriter ppm_;
