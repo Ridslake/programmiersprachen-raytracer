@@ -130,7 +130,7 @@ Scene load_sdf_file(std::string const& filename)
 	//Variablen von light
 	  std::string name;
 	  std::string mat_namelight;
-	  float posx, posy, posz, ldr, ldg, ldb;
+	  float posx, posy, posz, lar, lag, lab, ldr, ldg, ldb;
 	  //Light Variablen einlesen und zuordnen
 	  //lightname
 	  ss>>name;
@@ -140,12 +140,18 @@ Scene load_sdf_file(std::string const& filename)
 	  ss>>posz;
 	  glm::vec3 pos{posx,posy,posz};
 	  //Color
+	  ss>>lar;
+	  ss>>lag;
+	  ss>>lab;
+	  Color la{lar,lag,lab};
+	  //Color
 	  ss>>ldr;
 	  ss>>ldg;
 	  ss>>ldb;
 	  Color ld{ldr,ldg,ldb};
-
-	  scene.lights.push_back( Light(name, pos, ld));
+	  
+	  scene.amblight += la;
+	  scene.lights.push_back( Light(name, pos, la, ld));
 	  std::cout << "light: " << ld << "\n";
 	}
 	
@@ -153,10 +159,10 @@ Scene load_sdf_file(std::string const& filename)
 	{
 	//Variablen von camera
           std::string name;
-	  float angle, posx, posy, posz, dirx, diry, dirz, upx, upy, upz;
+	  float fovx, posx, posy, posz, dirx, diry, dirz, upx, upy, upz;
 	  //Einlesen und Zuweisen der Werte
 	  ss>>name;
-	  ss>>angle;
+	  ss>>fovx;
 	  ss>>posx;
 	  ss>>posy;
 	  ss>>posz;
@@ -170,7 +176,7 @@ Scene load_sdf_file(std::string const& filename)
 	  glm::vec3 dir{dirx,diry,dirz};
 	  glm::vec3 up{upx,upy,upz};
 
-	  Camera cam{name,pos,up,angle};
+	  Camera cam{name, fovx, pos, dir, up};
 	  std::cout << cam;
 	  scene.camera=cam;
 	}

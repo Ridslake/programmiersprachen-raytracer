@@ -30,23 +30,20 @@ Renderer::Renderer(Scene const& scene, float depth):
 
 void Renderer::render()
 {
-    //Camera distance mit Field of view
-    float pic_ymax = 2/scene_.xresolution*scene_.yresolution;
-    float distance = 1/tan((scene_.camera.angle()*M_PI)/180);
-    //Skalierung des Bildes
+    float distance = 1/tan((scene_.camera.getcamfovx()*M_PI)/360);
     int height_= scene_.yresolution;
     int width_= scene_.xresolution;
 
-    float h = -height_/2;
+    float h = height_/2;
 
     for (unsigned y = 0; y < height_; ++y)
     {
-	float w = -width_/2;
+	float w = width_/2;
         
 	for (unsigned x = 0; x < width_; ++x)
 	{
 	  //INternetformel
-          glm::vec3 eineRichtung {w/(width_/2),h/(height_/2), -distance};
+          glm::vec3 eineRichtung {(x - w)/width_,(y - h)/width_, -distance};
           Ray camray = scene_.camera.castray(eineRichtung);
           Pixel p(x,y);
 
@@ -62,7 +59,7 @@ void Renderer::render()
 
 Color Renderer::trace(Ray const& ray)
 {
-  Shape* first_hit;
+  Hit first_hit;
   Color pc;
   double shortest = 999999.9;
 
@@ -75,16 +72,18 @@ Color Renderer::trace(Ray const& ray)
 	  if(hit.distance_ < shortest)
 	  {
 	  shortest = hit.distance_;
-	  first_hit = hit.sptr_;
-	  pc = shade(ray, hit, depth);
+	  first_hit = hit;
 	  }
 	}
-	  if(shortest == 999999.9)
-	  {
-	  pc = scene_.background;
-	  }
   }
-  depth=0;
+  if(shortest == 999999.9)
+  {
+  pc = scene_.amblight;
+  }
+  else
+  {
+  pc = shade(ray, first_hit, depth);
+  }
   return pc;
 }
 
