@@ -27,16 +27,11 @@ Scene load_sdf_file(std::string const& filename)
   if (myfile.is_open())
   {
   while (getline(myfile,line))
-  {
+{
   std::stringstream ss;
   ss << line;
   std::string keyword;
   ss>>keyword;
-	
-  if(keyword == "#")
-  {
-  continue;
-  }
 
 //material, name, ka, kd, ks input
   if(keyword == "define")
@@ -64,7 +59,6 @@ Scene load_sdf_file(std::string const& filename)
 	ss>>mat.reflc;
 
 	scene.materials.insert({mat.name, mat});
-	//materials[mat.name]= mat;
 	std::cout << mat;
     }
     else if(keyword == "shape")
@@ -98,7 +92,7 @@ Scene load_sdf_file(std::string const& filename)
           Box {name, scene.materials[mat_namebox], min, max}
           );
 
-          std::cout << *temp_ptr;
+          //std::cout << *temp_ptr;
           scene.shapes_ptr.push_back(temp_ptr);
 	}
 	//Spehre einlesen
@@ -125,7 +119,7 @@ Scene load_sdf_file(std::string const& filename)
 	  Sphere{name,scene.materials[mat_namesphere],center,r}
 	  );
 
-	  std::cout << *temp_ptr;
+	  //std::cout << *temp_ptr;
 	  scene.shapes_ptr.push_back(temp_ptr);
 	}
 

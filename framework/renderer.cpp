@@ -15,15 +15,16 @@
 //Erstellt uns das Bild mit Color und Höhe und Breit (x,y)
 //C
 Renderer::Renderer():
-    scene_{},
+    scene_(),
     colorbuffer_(scene_.xresolution*scene_.yresolution, Color{}),
     ppm_(scene_.xresolution, scene_.yresolution, "default.ppm")
     {}
 
-Renderer::Renderer(Scene const& scene):
-    scene_{scene},
+Renderer::Renderer(Scene const& scene, float depth):
+    scene_(scene),
     colorbuffer_(scene.xresolution*scene.yresolution, Color{}),
-    ppm_(scene.xresolution, scene.yresolution, scene.filename)
+    ppm_(scene.xresolution, scene.yresolution, scene.filename),
+    depth (depth)
     {}
 
 
@@ -48,8 +49,11 @@ void Renderer::render()
           glm::vec3 eineRichtung {w/(width_/2),h/(height_/2), -distance};
           Ray camray = scene_.camera.castray(eineRichtung);
           Pixel p(x,y);
-          Shape* first_hit;
-          double shortest = 1;
+
+	  p.color = trace(camray);
+
+	  write(p);
+
 	}
     }          
     ppm_.save(scene_.filename);
@@ -155,9 +159,9 @@ Color Renderer::shade(Ray const& ray, Hit const& hit, float depth_)
 
     }
 
-    if (hit.sptr_->get_material().reflc > 0.0f && depth < maxdepth)
+    if (hit.sptr_->get_material().reflc > 0.0f && depth > 0)
     {
-        ++depth;
+        --depth;
         float  angle3=glm::dot(norm,ray_inv_dir);
         glm::vec3 reflectionvec = 2.0f * angle3 * norm - ray_inv_dir;
         Ray reflectionray{hit.target_ + (glm::normalize(hit.normal_) * shadowbias),reflectionvec};

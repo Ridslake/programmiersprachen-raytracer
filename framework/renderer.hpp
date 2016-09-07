@@ -17,13 +17,11 @@
 #include "scene.hpp"
 #include "camera.hpp"
 
-const unsigned maxdepth = 3;
-
 class Renderer
 {
 public:
   Renderer();
-  Renderer(Scene const& scene);
+  Renderer(Scene const& scene, float depth);
 
   void render();
   void write(Pixel const& p);
@@ -36,11 +34,11 @@ public:
     return colorbuffer_;
   }
 
-  int depth = 0;
 private:
   std::vector<Color> colorbuffer_;
   PpmWriter ppm_;
   Scene scene_;
+  float depth;
 };
 
 #endif // #ifndef BUW_RENDERER_HPP
