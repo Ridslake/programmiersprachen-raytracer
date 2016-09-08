@@ -26,8 +26,8 @@ public:
   void render();
   void write(Pixel const& p);
 
-  Color trace(Ray const& ray);
-  Color shade(Ray const& ray, Hit const& hit, float depth);
+  Color raytrace(Ray const& ray);
+  Color shades(Ray const& ray, Hit const& hit, float depth);
 
   inline std::vector<Color> const& colorbuffer() const
   {

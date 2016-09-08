@@ -4,6 +4,9 @@
 #include <iostream>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
+#include <string>
+#include <memory>
+#include <vector>
 
 #include "hit.hpp"
 #include "color.hpp"
@@ -27,6 +30,12 @@ public:
 protected:
   Shape();
   Shape(std::string const& name, Material const& mat_);
+
+//Composite
+//Virtual wegen override
+  virtual void removeChild(std::shared_ptr<Shape>& shape){}
+  virtual void addChild(std::shared_ptr<Shape>& shape){}
+  virtual std::vector<std::shared_ptr<Shape>> getChild(){}
 
 };
 
