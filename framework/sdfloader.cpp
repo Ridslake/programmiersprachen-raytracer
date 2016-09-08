@@ -172,9 +172,9 @@ Scene load_sdf_file(std::string const& filename)
 	  ss>>upx;
 	  ss>>upy;
 	  ss>>upz;
-	  glm::vec3 pos{posx,posy,posz};
-	  glm::vec3 dir{dirx,diry,dirz};
-	  glm::vec3 up{upx,upy,upz};
+	  glm::vec3 pos{posx, posy, posz};
+	  glm::vec3 dir{dirx, diry, dirz};
+	  glm::vec3 up{upx, upy, upz};
 
 	  Camera cam{name, fovx, pos, dir, up};
 	  std::cout << cam;
@@ -183,7 +183,6 @@ Scene load_sdf_file(std::string const& filename)
 
 	else if(keyword == "renderer")
 	{
-	  ss>>keyword;
 	  ss>>scene.filename;
 	  ss>>scene.xresolution;
 	  ss>>scene.yresolution;

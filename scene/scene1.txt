@@ -4,12 +4,12 @@ define material green 0.5 1 0.5 1 1 1 2 2 2 1
 define material orangegelb 1 0.5 0 1 0.5 0 1 0.5 0 1 
 
 define shape sphere kugel 0 0 -450 30 green
-define shape sphere kugel -20 30 -420 5 blue
-define shape sphere kugel 20 -30 -420 10 red
+define shape sphere kugel1 -20 30 -420 5 blue
+define shape sphere kugel2 20 -30 -420 10 red
 define shape box quader -10 -40 -400 0 -30 -430 red
 define shape box quader1 -50 -10 -360 -25 -30 -400 orangegelb
 define shape box quader2 -10 -10 -450 10 10 -500 green
 define light sonne 1000 700 500 0.2 0.2 0.2 0.8 0.8 0.8
-define camera kamera 45 20 10 0 0 0 -1 1 1 0
+define camera kamera 45 20 10 0 0 0 -1 0 1 0
 
-define renderer bildchen bildchen34 1000 1000
+define renderer bildchen34.ppm 1000 1000
