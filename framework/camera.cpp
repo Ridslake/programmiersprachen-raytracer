@@ -41,7 +41,8 @@ glm::vec3 const& Camera::getcamup() const
 //Intersect braucht Raycast (aus Kamera kommend)
 Ray const Camera::castray(glm::vec3 const& dir) const
 {
-  Ray ray{campos, campos + dir};
+  Ray ray{campos, dir};
+  ray.transformRay(CamTrans());
   return ray;
 }
 

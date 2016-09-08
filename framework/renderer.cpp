@@ -77,9 +77,9 @@ Color Renderer::raytrace(Ray const& ray)
   //Falls nichts getroffen wird
   if(shortest == 999999.9)
   {
-  pc = scene_.amblight;
+  pc = scene_.background;
   }
-  //Falls etwas getroffen wird ermittle Color über shade
+  //Falls etwas getroffen wird ermittle Color über shades
   else
   {
   pc = shades(ray, first_hit, depth);
@@ -103,6 +103,8 @@ Color Renderer::shades(Ray const& ray, Hit const& hit, float depth_)
   float angle1;
   float angle2;
   //shadowbias, wird benutzt um vom Schnittpunkt "wegzukommen"
+  //0.01 scheint ein guter Wert zu sein, da bei anderen Werten es zu Fehlern kommt
+  //aber nur bei den Spheres, die Box scheint unbeinträchtigt
   float shadowbias = 0.01f;
 
   std::vector<Color> Id_vec;
@@ -120,7 +122,7 @@ Color Renderer::shades(Ray const& ray, Hit const& hit, float depth_)
     //Richtungsvektor zum Licht
     glm::vec3 lightvec = glm::normalize(glm::vec3{ i->lightpos - hit.target_ });
 
-    //Vektor vom Schnittpunkt zur Lichtquelle für Schattenüberprüfung
+    //Vektor vom Schnittpunkt zur Lichtquelle für Schattenüberprüfung Schnittpunkt entlang des NormVektors verschoben
     Ray lightray{hit.target_ + (shadowbias*norm), lightvec};
 
     //Überprüfung Schatten,über shapes iterieren
@@ -152,7 +154,7 @@ Color Renderer::shades(Ray const& ray, Hit const& hit, float depth_)
 
     a1_vec.push_back(angle1);
     a2_vec.push_back(pow(angle2, hit.sptr_->get_material().m));
-
+    //Alles zurück auf Null setzen damit for von 0 anfängt.
     Id = {0.0,0.0,0.0};
     angle1 = 0.0;
     angle2 = 0.0;
@@ -164,19 +166,23 @@ Color Renderer::shades(Ray const& ray, Hit const& hit, float depth_)
     L_diff_spec = L_diff_spec + (Id_vec[t]*((kd*a1_vec[t]) + (ks*a2_vec[t])));
   }
 
-  //Reflektion des Lichts, maximal 3 mal gespiegelt
+  //Reflektion des Lichts, maximal 3 mal gespiegelt, nur wenn Material einen solchen 
+  //Wert hat
   if (hit.sptr_->get_material().reflc > 0.0f && depth > 0)
   {
-    --depth;
-    float  angle3=glm::dot(norm,ray_inv_dir);
+    --depth; //maximale Spiegelung (in raytracer cpp festgelegt, = 3)
+    float angle3 = glm::dot(norm, ray_inv_dir);
+    //Richtung des reflektierten Lichts
     glm::vec3 reflectionvec = 2.0f * angle3 * norm - ray_inv_dir;
+    //Reflectierter Ray
     Ray reflectionray{hit.target_ + (glm::normalize(hit.normal_) *
-    shadowbias),reflectionvec};
+    shadowbias), reflectionvec};
     Color reflectioncolor;
-    reflectioncolor=trace(reflectionray);
-    reflectioncolor=reflectioncolor * hit.sptr_->get_material().reflc;
-    L_diff_spec=L_diff_spec*(1-hit.sptr_->get_material().reflc)+reflectioncolor;
-
+    //Um Farbe zu ermitteln
+    reflectioncolor = raytrace(reflectionray);
+    reflectioncolor = reflectioncolor * hit.sptr_->get_material().reflc;
+    L_diff_spec = L_diff_spec*(1-hit.sptr_->get_material().reflc)+reflectioncolor;
+    //Sollte Material reflektieren wird dies zum Gesamtlicht hinzugefügt
     L_gesamt = L_diff_spec + L_amb;
     return L_gesamt;
   }

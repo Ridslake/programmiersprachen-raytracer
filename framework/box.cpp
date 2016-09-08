@@ -3,12 +3,14 @@
 #include <glm/vec3.hpp>
 #include <iostream>
 #include <algorithm>
+#include <catch.hpp>
 
 #include "box.hpp"
 #include "shape.hpp"
 #include "material.hpp"
 #include "ray.hpp"
 #include "color.hpp"
+
 
 //Default Constructor
 Box::Box():
@@ -87,8 +89,9 @@ Hit Box::intersect(Ray const& ray) {
   //intersection (hit)
   Hit b_hit;
 
-  if (tmax > std::max(0.0f, tmin)) {
-    //sptr = strong pointer zu this, behält pointer wenn außerhalb der scope gebraucht
+  if (tmax > std::max(0.0f, tmin))
+  {
+    //sptr = strong pointer zu this behält pointer wenn außerhalb der scope gebraucht
     b_hit.hit_ = true;
     b_hit.sptr_ = this;
     
@@ -96,47 +99,22 @@ Hit Box::intersect(Ray const& ray) {
     b_hit.distance_ = sqrt(tmin * tmin *
                          (ray.direction.x * ray.direction.x +
                           ray.direction.y * ray.direction.y +
-                          ray.direction.z * ray.direction.z)
-                        );
+                          ray.direction.z * ray.direction.z));
     //Getroffener Punkt am Objekt
     b_hit.target_ = glm::vec3{
-        ray.origin.x + tmin * ray.direction.x,
-        ray.origin.y + tmin * ray.direction.y,
-        ray.origin.z + tmin * ray.direction.z
+	ray.origin.x + tmin * ray.direction.x,
+	ray.origin.y + tmin * ray.direction.y,
+	ray.origin.z + tmin * ray.direction.z
     };
-    //normalisierter Vektor, damit die Richtung gleich bleibt
-    glm::vec3 normal{
-      std::numeric_limits<float>::infinity(),
-      std::numeric_limits<float>::infinity(),
-      std::numeric_limits<float>::infinity()
-    };
-    //damit es keinen Fehler beim auftreffen des Strahls gibt (bsp. in der box)
-    float bias = 0.00001;
+    glm::vec3 normal {};
 
-    //Wenn diese Bedingungen zutreffen, wird immer ein bestimmter Vektor zurückgegeben
-    //min max werte mit bias abgeglichen
-    if ((max_.x - b_hit.target_.x < bias) && (max_.x - b_hit.target_.x > -bias)) {
-        normal = glm::vec3{1.0, 0.0, 0.0};
-    }
-    else if ((min_.x - b_hit.target_.x < bias) && (min_.x - b_hit.target_.x > -bias)) {
-        normal = glm::vec3{-1.0, 0.0, 0.0};
-    }
-    else if ((max_.y - b_hit.target_.y < bias) && (max_.y - b_hit.target_.y > -bias)) {
-        normal = glm::vec3{0.0, 1.0, 0.0};
-    }
-    else if ((min_.y - b_hit.target_.y < bias) && (min_.y - b_hit.target_.y > -bias)) {
-        normal = glm::vec3{0.0, -1.0, 0.0};
-    }
-    else if ((max_.z - b_hit.target_.z < bias) && (max_.z - b_hit.target_.z > -bias)) {
-        normal = glm::vec3{0.0, 0.0, 1.0};
-    }
-    else if ((min_.z - b_hit.target_.z < bias) && (min_.z - b_hit.target_.z > -bias)) {
-        normal = glm::vec3{0.0, 0.0, -1.0};
-    }
+    if (b_hit.target_.x == Approx(min_.x)) {normal = glm::vec3{1.0, 0.0, 0.0};}
+    else if (b_hit.target_.x == Approx(max_.x)) {normal = glm::vec3{-1.0, 0.0, 0.0};}
+    else if (b_hit.target_.y == Approx(min_.y)) {normal = glm::vec3{0.0, 1.0, 0.0};}
+    else if (b_hit.target_.y == Approx(max_.y)) {normal = glm::vec3{0.0, -1.0, 0.0};}
+    else if (b_hit.target_.z == Approx(min_.z)) {normal = glm::vec3{0.0, 0.0, 1.0};}
+    else if (b_hit.target_.z == Approx(max_.z)) {normal = glm::vec3{0.0, 0.0, -1.0};}
     b_hit.normal_ = normal;
-
-
   }
-
   return b_hit;
 }
