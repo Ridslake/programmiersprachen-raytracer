@@ -10,6 +10,6 @@ define shape box quader -10 -40 -400 0 -30 -430 red
 define shape box quader1 -50 -10 -360 -25 -30 -400 orangegelb
 define shape box quader2 -10 -10 -450 10 10 -500 green
 define light sonne 1000 700 500 0.2 0.2 0.2 0.8 0.8 0.8
-define camera kamera 45 20 10 0 0 0 -1 0 1 0
+define camera kamera 45 20 10 0 0 0 -1 1 1 0
 
-define renderer bildchen bildchen32 1000 1000
+define renderer bildchen bildchen34 1000 1000

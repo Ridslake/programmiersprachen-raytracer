@@ -41,12 +41,22 @@ void Renderer::render()
     float w = width_/2;    
     for (unsigned x = 0; x < width_; ++x)
     {
-	//Internetformel
-	glm::vec3 Direction{(x - w)/width_, (y - h)/width_, -distance};
-	Ray camray = scene_.camera.castray(Direction);  	
-	Pixel p(x,y);
-	//Color ermitteln
-	p.color = raytrace(camray);
+    Pixel p(x,y);
+	//Antialiasing
+	for(float i = 0.0f; i < 1.0f; i += 0.5f)
+	{
+	  for(float j = 0.0f; j < 1.0f; j += 0.5f)
+	  {
+	    //(float)x, x wird zum float umgewandelt
+	    float xa = (float)x + i;
+	    float ya = (float)y + j;
+	    
+	    glm::vec3 Direction{(xa - w)/width_, (ya - h)/width_, -distance};
+	    Ray camray = scene_.camera.castray(Direction);
+	    Color coloraa = raytrace(camray);
+	    p.color += coloraa * 0.25f;
+	  }
+	} 	
 	write(p);
     }
   }          
